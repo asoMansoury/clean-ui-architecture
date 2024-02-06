@@ -3,9 +3,10 @@ import { Todo } from '../../../models/containers/Todo';
 import classes from './TodoItem.module.scss';
 type TodoItemProps = {
     todo:Todo;
+    onDeleteClicked:(id:number)=>void;
 }
 
-export const TodoItem = ({todo}:TodoItemProps) =>{
+export const TodoItem = ({todo,onDeleteClicked}:TodoItemProps) =>{
     return (<div className={classes.TodoItem + " flex"}>
         <div>
             <input type="checkbox"></input>
@@ -17,7 +18,7 @@ export const TodoItem = ({todo}:TodoItemProps) =>{
             </Button>
         </div>
         <div>
-            <Button primary={true}>
+            <Button primary={true} onClick={()=>onDeleteClicked(todo.id)}>
                 <i className="fa fa-trash"></i>
             </Button>
         </div>
