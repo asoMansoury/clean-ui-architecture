@@ -1,0 +1,6 @@
+@use "../../../styles/tokens" as *;
+.HeaderLink {
+    color: $INVERSE_TEXT_COLOR;
+    text-decoration: none;
+    cursor: pointer;
+}
