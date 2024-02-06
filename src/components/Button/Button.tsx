@@ -6,16 +6,22 @@ type ButtonProps = {
     secondary?:boolean;
     transparent?:boolean;
     disabled?:boolean;
+    onClick?: (event:any) => void
 }
-export const Button = ({children,primary,transparent}:ButtonProps) =>{
+
+export const Button = ({
+    children,
+    primary,
+    transparent,
+    onClick
+}:ButtonProps) =>{
     let classNames = [classes.Button];
     if(primary)
         classNames.push(classes.Primary);
     if(transparent)
         classNames.push(classes.Transparent);
-    return <button className={classNames.join(" ")}>
-        {
-            children
-        }
+
+    return <button type="button" onClick={onClick} className={classNames.join(" ")}>
+        {children}
     </button>
 }
