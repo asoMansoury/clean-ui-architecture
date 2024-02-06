@@ -1,28 +1,20 @@
+import { HttpClientAdapter } from "../adapters/HttpClientAdapter";
+import { Todo } from "../models/containers/Todo";
+
 export class TodoService {
+    private readonly http:HttpClientAdapter;
+    constructor(){
+        this.http = new HttpClientAdapter({baseUrl:"http://localhost:3001"});
+    }
     getAllTodo(){
-       return fetch("http://localhost:3001/todos")
-       .then((response)=>response.json())
+       return this.http.get<Todo[]>("/todos");
     }
 
     addToddo(task:string){
-       return fetch("http://localhost:3001/todos",{
-            method:"POST",
-            headers:{
-                "Content-Type":"application/json",
-            },
-            body:JSON.stringify({todo:task})
-        })
-        .then((response)=>response.json())
+       return this.http.post<{todo:string}>("/todos",{todo:task});
     }
 
     deleteTodo(id:number){
-        return fetch("http://localhost:3001/todos",{
-            method:"DELETE",
-            headers:{
-                "Content-Type":"application/json",
-            },
-            body:JSON.stringify({id:id})
-        })
-        .then((response)=>response.json());
+        return this.http.delete<{id:number}>("/todos",{id:id});
     }
 }
