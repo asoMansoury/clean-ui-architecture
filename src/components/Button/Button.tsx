@@ -1,4 +1,4 @@
-import { ReactNode } from "react"
+import { MouseEventHandler, ReactNode } from "react"
 import classes from './Button.module.scss';
 type ButtonProps = {
     children:ReactNode,
@@ -6,7 +6,7 @@ type ButtonProps = {
     secondary?:boolean;
     transparent?:boolean;
     disabled?:boolean;
-    onClick?: (event:any) => void
+    onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
 export const Button = ({

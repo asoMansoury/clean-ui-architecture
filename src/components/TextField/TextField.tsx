@@ -3,7 +3,7 @@ import { forwardRef, memo } from "react";
 
 type TextFieldProps = {
   value: string;
-  onInput?: any;
+  onInput: (value:string)=> void;
   label?: string;
   name?: string;
   className?: string;
