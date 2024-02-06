@@ -9,18 +9,15 @@ type TextFieldProps = {
   className?: string;
 };
 
-export const TextField = ({onInput,value}:TextFieldProps) => {
+export const TextField = forwardRef<HTMLInputElement,TextFieldProps>(({onInput,value}:TextFieldProps,ref) => {
 
-  const inputFieldRef = useRef<HTMLInputElement>(null);
-  useEffect(()=>{
-    inputFieldRef.current?.focus();
-  },[])
+
 
   return <input 
-          ref={inputFieldRef}
+          ref={ref}
           value={value}
           onChange={event=>onInput(event.target.value)} 
           className={classes.TextField}
           type="text"
           ></input>
-}
+});
