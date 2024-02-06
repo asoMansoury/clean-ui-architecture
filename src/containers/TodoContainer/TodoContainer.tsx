@@ -3,14 +3,18 @@ import classes from "./TodoContainer.module.scss";
 import { TodoItem } from "./TodoItem/TodoItem";
 import { AddTodoItem } from "../AddTodoItem/AddTodoItem";
 import { Todo } from "../../models/containers/Todo";
+import { TodoService } from "../../services/Todo.service";
 
 export const TodoContainer = () =>{
     const [todos,setTodos] = useState<Todo[]>([]);
+
+    const todoService = new TodoService();
+
     const fetchTodos = () =>{
-        fetch("http://localhost:3001/todos").then((response)=>response.json())
-        .then((todoes:Todo[])=>{
-            setTodos(todoes);
-        });
+        return todoService.getAllTodo()
+                        .then((todoes:Todo[])=>{
+                            setTodos(todoes);
+                        });
     }
     
 
@@ -19,26 +23,14 @@ export const TodoContainer = () =>{
     },[])
 
     const onAddClicked = (task:string)=>{
-        fetch("http://localhost:3001/todos",{
-            method:"POST",
-            headers:{
-                "Content-Type":"application/json",
-            },
-            body:JSON.stringify({todo:task})
-        }).then((()=>{
+        todoService.addToddo(task).then((()=>{
             fetchTodos()
         }));
     };
 
 
     const onDeleteClicked =(id:number)=>{
-        fetch("http://localhost:3001/todos",{
-            method:"DELETE",
-            headers:{
-                "Content-Type":"application/json",
-            },
-            body:JSON.stringify({id:id})
-        }).then((()=>{
+        todoService.deleteTodo(id).then((()=>{
             fetchTodos()
         }));
     }
