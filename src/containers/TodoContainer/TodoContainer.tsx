@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import classes from "./TodoContainer.module.scss";
 import { TodoItem } from "./TodoItem/TodoItem";
-import { AddTodoItem } from "../AddTodoItem/AddTodoItem";
+import { AddTodoItem } from "./AddTodoItem/AddTodoItem";
 import { Todo } from "../../models/containers/Todo";
 import { TodoService } from "../../services/Todo.service";
 
-export const TodoContainer = () =>{
+type TodoContianerProps = {
+    todoService:TodoService
+}
+export const TodoContainer = ({todoService}:TodoContianerProps) =>{
     const [todos,setTodos] = useState<Todo[]>([]);
-
-    const todoService = new TodoService();
-
     const fetchTodos = () =>{
         return todoService.getAllTodo()
                         .then((todoes:Todo[])=>{

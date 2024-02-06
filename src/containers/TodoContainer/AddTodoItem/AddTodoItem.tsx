@@ -1,7 +1,7 @@
 import { FormEventHandler, useState } from "react"
-import { TextField } from "../../components/TextField/TextField"
-import { Button } from "../../components/Button/Button"
-import { useAutoFocus } from "../../customHooks/useAutoFocus";
+import { TextField } from "../../../components/TextField/TextField"
+import { Button } from "../../../components/Button/Button"
+import { useAutoFocus } from "../../../customHooks/useAutoFocus";
 type AddTodoItemProps = {
     onAddClicked:(task:string)=>void;
 }

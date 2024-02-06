@@ -3,8 +3,8 @@ import { Todo } from "../models/containers/Todo";
 
 export class TodoService {
     private readonly http:HttpClientAdapter;
-    constructor(){
-        this.http = new HttpClientAdapter({baseUrl:"http://localhost:3001"});
+    constructor(httpAdapter:HttpClientAdapter){
+        this.http = httpAdapter;
     }
     getAllTodo(){
        return this.http.get<Todo[]>("/todos");
