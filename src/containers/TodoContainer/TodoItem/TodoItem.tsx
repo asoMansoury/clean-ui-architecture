@@ -1,7 +1,8 @@
 import { Button } from '../../../components/Button/Button';
+import { Todo } from '../../../models/containers/Todo';
 import classes from './TodoItem.module.scss';
 type TodoItemProps = {
-    todo:string;
+    todo:Todo;
 }
 
 export const TodoItem = ({todo}:TodoItemProps) =>{
@@ -9,7 +10,7 @@ export const TodoItem = ({todo}:TodoItemProps) =>{
         <div>
             <input type="checkbox"></input>
         </div>
-        <div className="mr-auto">{todo}</div>
+        <div className="mr-auto">{todo.task}</div>
         <div >
             <Button primary={true} transparent={true}>
              <i className="fa fa-pencil"></i>

@@ -1,5 +1,5 @@
 import classes from "./TextField.module.scss";
-import { forwardRef, memo, useEffect, useRef } from "react";
+import { forwardRef} from "react";
 
 type TextFieldProps = {
   value: string;
