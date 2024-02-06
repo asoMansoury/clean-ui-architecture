@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { FormEventHandler, useState } from "react"
 import { TextField } from "../../components/TextField/TextField"
 import { Button } from "../../components/Button/Button"
 type AddTodoItemProps = {
@@ -8,7 +8,8 @@ export const AddTodoItem = ({onAddClicked}:AddTodoItemProps) =>{
     const [task,setTask] = useState<string>("");
 
 
-    const onClickAdd =() =>{
+    const onFormSubmitted:FormEventHandler<HTMLFormElement> =(event) =>{
+        event.preventDefault();
         onAddClicked(task);
         setTask("");
     }
@@ -17,13 +18,13 @@ export const AddTodoItem = ({onAddClicked}:AddTodoItemProps) =>{
         setTask(value); 
     }
     return (
-        <form>
+        <form onSubmit={onFormSubmitted}>
         <div className="flex">
             <div className="flex-grow-1 mr-2">
                 <TextField value={task} onInput={OnTextChange}></TextField>
             </div>
 
-            <div><Button onClick={onClickAdd} primary> Add</Button></div>
+            <div><Button type="submit" primary> Add</Button></div>
         </div>
     </form>
     )
