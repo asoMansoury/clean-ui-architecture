@@ -1,6 +1,7 @@
 import { MouseEventHandler, ReactNode } from "react"
 import classes from './Button.module.scss';
 type ButtonProps = {
+    className?:string,
     children:ReactNode,
     primary?:boolean,
     secondary?:boolean,
@@ -11,6 +12,7 @@ type ButtonProps = {
 }
 
 export const Button = ({
+    className,
     children,
     primary,
     transparent,
@@ -18,7 +20,7 @@ export const Button = ({
     onClick,
     type="button"
 }:ButtonProps) =>{
-    let classNames = [classes.Button];
+    let classNames = [classes.Button,className];
     if(primary)
         classNames.push(classes.Primary);
     if(transparent)

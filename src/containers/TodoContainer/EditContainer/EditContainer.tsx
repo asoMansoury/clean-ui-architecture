@@ -66,9 +66,9 @@ export const EditContainer = (
             <CheckBoxField name='IsDone' label='Is Done' value={todo.isDone} onInput={(value)=>onFormChanged({isDone:value})}></CheckBoxField>
             <TextAreaField  name='Description' label='Description' value={todo.description} onInput={(value)=>onFormChanged({description:value})}></TextAreaField>
             <CanvasField label='Hand Notes' value={todo.handNotes} onInput={(value)=>onFormChanged({handNotes:value})}></CanvasField>
-            <div>
-                <Button primary onClick={onClickedSaveButton}>Save</Button>
-                <Button secondary onClick={onCancelButton}>Cancel</Button>
+            <div className='flex mt-2'>
+                <Button className="flex-frow-1 mr-2" primary onClick={onClickedSaveButton}>Save</Button>
+                <Button className="flex-frow-1 mr-2" secondary onClick={onCancelButton}>Cancel</Button>
             </div>
         </div>
     </div>

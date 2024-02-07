@@ -4,8 +4,13 @@ export class HttpClientAdapter{
         this.baseUrl = baseUrl;
     }
 
-    get<T>(url:string):Promise<T>{
-        return fetch(this.baseUrl+url)
+    get<T>(url:string,params: {query:object}={query:{}}):Promise<T>{
+
+        const query = Object.keys(params?.query || {})
+                            .map((key)=> `${key}=${Object.getOwnPropertyDescriptor(params.query,key)?.value}`
+                            )
+                            .join("&")
+        return fetch(this.baseUrl+url + "?"+query)
         .then((response)=>response.json())
     }
 

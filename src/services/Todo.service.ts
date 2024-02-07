@@ -10,8 +10,8 @@ export class TodoService {
     getTodo(id:number){
         return this.http.get<Todo>(`/todos/${id}`);
     }
-    getAllTodo(){
-       return this.http.get<Todo[]>("/todos");
+    getAllTodo(params?:{query:{isDone:string}}){
+       return this.http.get<Todo[]>("/todos",params);
     }
 
     addToddo(task:string){
