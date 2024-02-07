@@ -16,7 +16,7 @@ export const TodoItem = (
         <div>
             <CheckBoxField value={todo.isDone} onInput={(value)=>onDoneClicked(todo.id,value)}></CheckBoxField>
         </div>
-        <div className="mr-auto">{todo.task}</div>
+        <div className={`mr-auto mt-auto mb-auto ` + (todo.isDone && classes.TodoIsDon)}>{todo.task}</div>
         <div >
             <Button primary={true} transparent={true} onClick={()=>onEditClicked(todo.id)}>
              <i className="fa fa-pencil"></i>
