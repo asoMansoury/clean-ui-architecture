@@ -51,11 +51,13 @@ export const EditContainer = (
         }
 
        const onFormChanged = (updatedState:Partial<TodoState>)=>{
-        setTodo((currentState)=>({
-            ...currentState,
-            ...updatedState
-        }))
+            setTodo((currentState)=>({
+                ...currentState,
+                ...updatedState
+            }))
         }
+
+         
 
     return <div className={classes.EditTodoContainer}>
         <h2>Edit Todo</h2>
@@ -63,7 +65,7 @@ export const EditContainer = (
             <TextField label='Task' name='Task' value={todo.task} onInput={(value)=>onFormChanged({task:value})}></TextField>
             <CheckBoxField name='IsDone' label='Is Done' value={todo.isDone} onInput={(value)=>onFormChanged({isDone:value})}></CheckBoxField>
             <TextAreaField  name='Description' label='Description' value={todo.description} onInput={(value)=>onFormChanged({description:value})}></TextAreaField>
-            <CanvasField label='Hand Notes' value={todo.handNotes}></CanvasField>
+            <CanvasField label='Hand Notes' value={todo.handNotes} onInput={(value)=>onFormChanged({handNotes:value})}></CanvasField>
             <div>
                 <Button primary onClick={onClickedSaveButton}>Save</Button>
                 <Button secondary onClick={onCancelButton}>Cancel</Button>
