@@ -4,6 +4,7 @@ import { TodoItem } from "./TodoItem/TodoItem";
 import { AddTodoItem } from "./AddTodoItem/AddTodoItem";
 import { Todo } from "../../models/containers/Todo";
 import { TodoService } from "../../services/Todo.service";
+import { EditContainer } from "./EditContainer/EditContainer";
 
 type TodoContianerProps = {
     todoService:TodoService
@@ -42,6 +43,7 @@ export const TodoContainer = ({todoService}:TodoContianerProps) =>{
                 <TodoItem key={index} todo={item} onDeleteClicked={onDeleteClicked}></TodoItem>
                 )
             )}
+            <EditContainer></EditContainer>
         </>
     )
 }

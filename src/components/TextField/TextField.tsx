@@ -9,15 +9,20 @@ type TextFieldProps = {
   className?: string;
 };
 
-export const TextField = forwardRef<HTMLInputElement,TextFieldProps>(({onInput,value}:TextFieldProps,ref) => {
+export const TextField = forwardRef<HTMLInputElement,TextFieldProps>(
+  ({onInput,value,label,name}:TextFieldProps,ref) => {
 
 
 
-  return <input 
+  return <>
+    {label? <label htmlFor={name}>{label}</label>:null}
+    <input 
+          name={name}
           ref={ref}
           value={value}
           onChange={event=>onInput(event.target.value)} 
           className={classes.TextField}
           type="text"
           ></input>
+  </>
 });

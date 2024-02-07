@@ -14,6 +14,7 @@ export const Button = ({
     children,
     primary,
     transparent,
+    secondary,
     onClick,
     type="button"
 }:ButtonProps) =>{
@@ -22,6 +23,8 @@ export const Button = ({
         classNames.push(classes.Primary);
     if(transparent)
         classNames.push(classes.Transparent);
+    if(secondary)
+        classNames.push(classes.Secondary);
 
     return <button type={type} onClick={onClick} className={classNames.join(" ")}>
         {children}
