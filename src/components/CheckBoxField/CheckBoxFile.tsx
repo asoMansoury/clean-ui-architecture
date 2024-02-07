@@ -5,10 +5,13 @@ type CheckBoxFieldProps = {
     value?:boolean,
     label?:string,
     name?:string;
+    onInput?:(value:boolean) => void;
 }
-export const CheckBoxField =({value,label,name}:CheckBoxFieldProps) =>{
+export const CheckBoxField =({value,label,name,onInput}:CheckBoxFieldProps) =>{
     return <div className={classes.CheckBox}>
-        <input name={name} type="checkbox" ></input>
+        <input name={name} type="checkbox" onChange={(event)=>onInput&&onInput(event.target.checked)}
+            checked={value}
+        ></input>
         {label? <label htmlFor={name} className='ml-1'>{label}</label>:null}
     </div>
 }

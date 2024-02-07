@@ -3,11 +3,16 @@ type  TextAreaFieldProps = {
     value:string;
     label?:string;
     name?:string;
+    onInput: (value:string)=> void;
 }
-export const TextAreaField = ({value,label,name}:TextAreaFieldProps) =>{
+export const TextAreaField = ({value,label,name,onInput}:TextAreaFieldProps) =>{
 
     return <>
         {label? <label htmlFor={name}>{label}</label>:null}
-        <textarea className={classes.TextAreaField} value={value}></textarea>
+        <textarea 
+            className={classes.TextAreaField} 
+            value={value} 
+            onChange={event=>onInput(event.target.value)} 
+        ></textarea>
     </>
 }

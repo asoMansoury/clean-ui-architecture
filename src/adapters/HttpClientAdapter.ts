@@ -20,6 +20,17 @@ export class HttpClientAdapter{
         .then((response)=>response.json())
     }
 
+    patch<T>(url:string,data:T){
+        return fetch(this.baseUrl+url,{
+            method:"PATCH",
+            headers:{
+                "Content-Type":"application/json",
+            },
+            body:JSON.stringify(data)
+        })
+        .then((response)=>response.json())
+    }
+
 
     delete<T>(url:string,data: T){
         

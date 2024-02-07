@@ -6,6 +6,10 @@ export class TodoService {
     constructor(httpAdapter:HttpClientAdapter){
         this.http = httpAdapter;
     }
+
+    getTodo(id:number){
+        return this.http.get<Todo>(`/todos/${id}`);
+    }
     getAllTodo(){
        return this.http.get<Todo[]>("/todos");
     }
@@ -16,5 +20,9 @@ export class TodoService {
 
     deleteTodo(id:number){
         return this.http.delete<{id:number}>("/todos",{id:id});
+    }
+
+    updateTodo(id:number,task:Partial<Todo>){
+        return this.http.patch<Partial<Todo>>("/todos/"+id,task);
     }
 }
