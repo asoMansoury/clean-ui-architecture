@@ -1,4 +1,4 @@
-import { Component, ComponentProps, Dispatch, ElementType, ReactNode, SetStateAction, createContext, useContext, useState } from "react";
+import { Component, ComponentProps, Dispatch, ElementType, ReactNode, SetStateAction, createContext, useContext } from "react";
 
 type AppStateType = {
     appState:{
@@ -16,10 +16,7 @@ type AppStateType = {
   
 
 
-export const useAppState = () =>{
-
-    return useContext(AppState);
-};
+export const useAppState = () =>useContext(AppState);
 //   export const useAppState = ()=>{
 //     const [appState,setAppState] = useState({
 //         editTodId:-1,

@@ -2,9 +2,9 @@
 import './App.css';
 import "./styles/general.scss";
 import Header from './partials/Header/Header';
-import TodoContainer from './containers/TodoContainer';
-import EditContainer from './containers/TodoContainer/EditContainer';
-import { AppState, AppStateProvider, useAppState } from './customHooks/useAppSate';
+import { AppStateProvider, useAppState } from './customHooks/useAppSate';
+import EditContainer from './pages/Todo/EditContainer';
+import  TodoContainer  from './pages/Todo';
 
 
 

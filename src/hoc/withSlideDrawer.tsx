@@ -8,8 +8,8 @@ export const withSlideDrawer = (Component:ElementType)=>{
     return function (props:ComponentProps<typeof Component>){
 
         const {appState} = useAppState();
-        console.log({appState})
-        return appState.isDrawerOpen==true?<div className={classes.EditTodoContainer}>
+        console.log(appState.isDrawerOpen,Component)
+        return appState.isDrawerOpen===true?<div className={classes.EditTodoContainer}>
             <Component {...props}></Component>
         </div>:null;
     }

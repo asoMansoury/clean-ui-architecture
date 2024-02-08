@@ -24,7 +24,6 @@ export const TodoContainer = ({todoService}:TodoContianerProps) =>{
     
 
     useEffect(()=>{
-        console.log(appState)
         if(appState.editTodId === -1){
             fetchTodos();
         }
