@@ -10,8 +10,6 @@ import  TodoContainer  from './pages/Todo';
 
 function App() {
 
-  const {appState,setAppState} = useAppState();
-
   return <>
   <Header></Header>
   <div className='mr-auto ml-auto' style={{width:"500px"}}>

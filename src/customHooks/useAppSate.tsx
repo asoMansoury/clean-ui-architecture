@@ -1,12 +1,6 @@
-import { Component, ComponentProps, Dispatch, ElementType, ReactNode, SetStateAction, createContext, useContext } from "react";
+import { ReactNode,createContext, useContext } from "react";
+import { AppStateType } from "../models/contexts/AppStateType";
 
-type AppStateType = {
-    appState:{
-      editTodId:number,
-      isDrawerOpen:boolean
-    },
-    setAppState:Dispatch<SetStateAction<{editTodId:number;isDrawerOpen:boolean}>>
-  }
 
 
   export const AppState = createContext<AppStateType>({
