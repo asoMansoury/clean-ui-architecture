@@ -1,19 +1,19 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import classes from "./TodoContainer.module.scss";
 import { TodoItem } from "./TodoItem/TodoItem";
 import { AddTodoItem } from "./AddTodoItem/AddTodoItem";
 import { Todo } from "../../models/containers/Todo";
 import { TodoService } from "../../services/Todo.service";
-import EditContainer  from "./EditContainer";
 import { ButtonSelect } from "../../components/ButtonSelect/ButtonSelect";
+import { useAppState } from "../../customHooks/useAppSate";
 
 type TodoContianerProps = {
     todoService:TodoService
 }
 export const TodoContainer = ({todoService}:TodoContianerProps) =>{
+    const {appState,setAppState} = useAppState();
     const [todos,setTodos] = useState<Todo[]>([]);
     const [todoStateFilter,setTodoStateFilter] = useState<string>("all");
-    const [selectedTask,setSelectedTask] = useState<number>(-1);
 
     const fetchTodos = () =>{
         return todoService.getAllTodo()
@@ -24,8 +24,11 @@ export const TodoContainer = ({todoService}:TodoContianerProps) =>{
     
 
     useEffect(()=>{
-        fetchTodos();
-    },[])
+        console.log(appState)
+        if(appState.editTodId === -1){
+            fetchTodos();
+        }
+    },[appState.editTodId])
 
     const onDoneClicked =(todoId:number,isDone:boolean) =>{
         todoService.updateTodo(todoId,{isDone:isDone}).then((()=>{
@@ -47,12 +50,7 @@ export const TodoContainer = ({todoService}:TodoContianerProps) =>{
     }
 
     const onEditClicked= (id:number)=>{
-        setSelectedTask(id);
-    }
-
-    const closeDrawer =() =>{
-        setSelectedTask(-1);
-        fetchTodos()
+        setAppState({editTodId:id,isDrawerOpen:true})
     }
 
     const buttonSelectOptions = [
@@ -83,10 +81,6 @@ export const TodoContainer = ({todoService}:TodoContianerProps) =>{
                     onEditClicked={onEditClicked}></TodoItem>
                 )
             )}
-        {selectedTask!==-1?<EditContainer                                                 
-                                        todoId = {selectedTask}
-                                        onSaveClicked={closeDrawer} 
-                                        onCancelClicked={closeDrawer} ></EditContainer>:null}
         </>
     )
 }

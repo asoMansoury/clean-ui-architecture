@@ -1,16 +1,13 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import { Button } from '../../../components/Button/Button';
 import { CanvasField } from '../../../components/CanvasField/CanvasField';
 import { CheckBoxField } from '../../../components/CheckBoxField/CheckBoxFile';
 import { TextAreaField } from '../../../components/TextAreaField/TextAreadField';
 import { TextField } from '../../../components/TextField/TextField';
-import classes from './EditContainer.module.scss';
 import { TodoService } from '../../../services/Todo.service';
+import { useAppState } from '../../../customHooks/useAppSate';
 
 type EditContainerProps ={
-    todoId:number,
-    onSaveClicked:()=>void,
-    onCancelClicked:()=>void;
     todoService:TodoService
 }
 type TodoState = {
@@ -21,9 +18,6 @@ type TodoState = {
 }
 export const EditContainer = (
     {
-        todoId,
-        onCancelClicked,
-        onSaveClicked,
         todoService
     }:EditContainerProps) =>{
     const [todo,setTodo] = useState<TodoState>({
@@ -33,21 +27,25 @@ export const EditContainer = (
         task:""
     });
 
+    const {appState,setAppState} =  useAppState();
+
     useEffect(()=>{
-        todoService.getTodo(todoId).then((todo)=>{
-            setTodo(todo)
-        });
-    },[todoId]);
+        if(appState.editTodId!==-1){
+            todoService.getTodo(appState.editTodId).then((todo)=>{
+                setTodo(todo)
+            });
+        }
+    },[appState.editTodId]);
 
         const onClickedSaveButton =()=>{
-            todoService.updateTodo(todoId,todo).then(()=>{
-                onSaveClicked(); 
+            todoService.updateTodo(appState.editTodId,todo).then(()=>{
+                setAppState({editTodId:-1,isDrawerOpen:false});
             });
+            
         }
 
         const onCancelButton =()=>{
-
-            onCancelClicked();   
+            setAppState({editTodId:-1,isDrawerOpen:false});
         }
 
        const onFormChanged = (updatedState:Partial<TodoState>)=>{
@@ -57,15 +55,18 @@ export const EditContainer = (
             }))
         }
 
-         
+    const onTaskChanged = useCallback((value:string)=>onFormChanged({task:value}),[]);
+    const onDoneChanged = useCallback((value:boolean)=>onFormChanged({isDone:value}),[]);
+    const onDescriptionChanged = useCallback((value:string)=>onFormChanged({description:value}),[]);
+    const onHandnotesChanged = useCallback((value:string)=>onFormChanged({handNotes:value}),[]);
 
     return <>
         <h2>Edit Todo</h2>
         <div>
-            <TextField label='Task' name='Task' value={todo.task} onInput={useCallback((value)=>onFormChanged({task:value}),[])}></TextField>
-            <CheckBoxField name='IsDone' label='Is Done' value={todo.isDone} onInput={useCallback((value:boolean)=>onFormChanged({isDone:value}),[])}></CheckBoxField>
-            <TextAreaField  name='Description' label='Description' value={todo.description} onInput={useCallback((value)=>onFormChanged({description:value}),[])}></TextAreaField>
-            <CanvasField label='Hand Notes' value={todo.handNotes} onInput={useCallback((value)=>onFormChanged({handNotes:value}),[])}></CanvasField>
+            <TextField label='Task' name='Task' value={todo.task} onInput={onTaskChanged}></TextField>
+            <CheckBoxField name='IsDone' label='Is Done' value={todo.isDone} onInput={onDoneChanged}></CheckBoxField>
+            <TextAreaField  name='Description' label='Description' value={todo.description} onInput={onDescriptionChanged}></TextAreaField>
+            <CanvasField label='Hand Notes' value={todo.handNotes} onInput={onHandnotesChanged}></CanvasField>
             <div className='flex mt-2'>
                 <Button className="flex-frow-1 mr-2" primary onClick={onClickedSaveButton}>Save</Button>
                 <Button className="flex-frow-1 mr-2" secondary onClick={onCancelButton}>Cancel</Button>
