@@ -1,4 +1,4 @@
-import { MouseEvent, useEffect, useRef, useState } from 'react';
+import { MouseEvent, memo, useEffect, useRef, useState } from 'react';
 import classes from './CanvasField.module.scss';
 
 type CanvasFieldProp = {
@@ -10,7 +10,7 @@ type CanvasFieldProp = {
 
 type Coordinates = {x:number;y:number};
 
-export const CanvasField = ({name,label,value,onInput}:CanvasFieldProp) =>{
+export const CanvasField = memo(({name,label,value,onInput}:CanvasFieldProp) =>{
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [isDrawing,setIsDrawing] = useState<boolean>(false);
 
@@ -86,4 +86,4 @@ export const CanvasField = ({name,label,value,onInput}:CanvasFieldProp) =>{
             className={classes.CanvasField}
             ></canvas>
     </>
-}
+})

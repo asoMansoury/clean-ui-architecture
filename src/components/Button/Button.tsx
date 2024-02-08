@@ -1,4 +1,4 @@
-import { MouseEventHandler, ReactNode } from "react"
+import { MouseEventHandler, ReactNode, memo } from "react"
 import classes from './Button.module.scss';
 type ButtonProps = {
     className?:string,
@@ -11,7 +11,7 @@ type ButtonProps = {
     type?:'button' | 'submit'
 }
 
-export const Button = ({
+export const Button = memo(({
     className,
     children,
     primary,
@@ -31,4 +31,4 @@ export const Button = ({
     return <button type={type} onClick={onClick} className={classNames.join(" ")}>
         {children}
     </button>
-}
+})

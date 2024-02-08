@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Button } from '../../../components/Button/Button';
 import { CanvasField } from '../../../components/CanvasField/CanvasField';
 import { CheckBoxField } from '../../../components/CheckBoxField/CheckBoxFile';
@@ -59,17 +59,17 @@ export const EditContainer = (
 
          
 
-    return <div className={classes.EditTodoContainer}>
+    return <>
         <h2>Edit Todo</h2>
         <div>
-            <TextField label='Task' name='Task' value={todo.task} onInput={(value)=>onFormChanged({task:value})}></TextField>
-            <CheckBoxField name='IsDone' label='Is Done' value={todo.isDone} onInput={(value)=>onFormChanged({isDone:value})}></CheckBoxField>
-            <TextAreaField  name='Description' label='Description' value={todo.description} onInput={(value)=>onFormChanged({description:value})}></TextAreaField>
-            <CanvasField label='Hand Notes' value={todo.handNotes} onInput={(value)=>onFormChanged({handNotes:value})}></CanvasField>
+            <TextField label='Task' name='Task' value={todo.task} onInput={useCallback((value)=>onFormChanged({task:value}),[])}></TextField>
+            <CheckBoxField name='IsDone' label='Is Done' value={todo.isDone} onInput={useCallback((value:boolean)=>onFormChanged({isDone:value}),[])}></CheckBoxField>
+            <TextAreaField  name='Description' label='Description' value={todo.description} onInput={useCallback((value)=>onFormChanged({description:value}),[])}></TextAreaField>
+            <CanvasField label='Hand Notes' value={todo.handNotes} onInput={useCallback((value)=>onFormChanged({handNotes:value}),[])}></CanvasField>
             <div className='flex mt-2'>
                 <Button className="flex-frow-1 mr-2" primary onClick={onClickedSaveButton}>Save</Button>
                 <Button className="flex-frow-1 mr-2" secondary onClick={onCancelButton}>Cancel</Button>
             </div>
         </div>
-    </div>
+    </>
 }

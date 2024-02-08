@@ -1,5 +1,5 @@
 import classes from "./TextField.module.scss";
-import { forwardRef} from "react";
+import { forwardRef, memo} from "react";
 
 type TextFieldProps = {
   value: string;
@@ -9,7 +9,7 @@ type TextFieldProps = {
   className?: string;
 };
 
-export const TextField = forwardRef<HTMLInputElement,TextFieldProps>(
+export const TextField = memo(forwardRef<HTMLInputElement,TextFieldProps>(
   ({onInput,value,label,name}:TextFieldProps,ref) => {
 
 
@@ -25,4 +25,4 @@ export const TextField = forwardRef<HTMLInputElement,TextFieldProps>(
           type="text"
           ></input>
   </>
-});
+}));

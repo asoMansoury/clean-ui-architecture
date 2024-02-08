@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Button } from '../Button/Button';
 import classes from './ButtonSelect.module.scss';
 
@@ -10,7 +11,7 @@ type ButtonSelectProps = {
     options:ButtonSelectOption[];
     onInput:(value:string)=> void;
 }
-export const ButtonSelect = ({
+export const ButtonSelect = memo(({
     value,
     options,
     onInput}:ButtonSelectProps) =>{
@@ -25,4 +26,4 @@ export const ButtonSelect = ({
                 onClick={()=>onInput(option.value)}>{option.label}</Button>
         })
     }</div>
-}
+})
