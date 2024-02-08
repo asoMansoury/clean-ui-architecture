@@ -1,3 +1,4 @@
 export interface IDrawerType{
-    isDrawerOpen:boolean
+    isDrawerOpen:boolean,
+    todoId:number
 }

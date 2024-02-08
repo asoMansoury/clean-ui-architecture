@@ -6,15 +6,20 @@ import { Todo } from "../../models/containers/Todo";
 import { TodoService } from "../../services/Todo.service";
 import { ButtonSelect } from "../../components/ButtonSelect/ButtonSelect";
 import { useAppState } from "../../customHooks/useAppSate";
+import { useDispatch, useSelector } from "react-redux";
+import { closeDrawerFunc, openDrawerFunc } from "../../redux/todo/TodoReducer";
+import { RootState } from "../../redux";
 
 type TodoContianerProps = {
     todoService:TodoService
 }
 export const TodoContainer = ({todoService}:TodoContianerProps) =>{
-    const {appState,setAppState} = useAppState();
+    const todoDrawer = useSelector((state: RootState) => state.todo);
+    // const {appState,setAppState} = useAppState();
+
     const [todos,setTodos] = useState<Todo[]>([]);
     const [todoStateFilter,setTodoStateFilter] = useState<string>("all");
-
+    const dispatch = useDispatch();
     const fetchTodos = () =>{
         return todoService.getAllTodo()
                         .then((todoes:Todo[])=>{
@@ -24,10 +29,10 @@ export const TodoContainer = ({todoService}:TodoContianerProps) =>{
     
 
     useEffect(()=>{
-        if(appState.editTodId === -1){
+        if(todoDrawer.todoId === -1){
             fetchTodos();
         }
-    },[appState.editTodId])
+    },[todoDrawer.todoId])
 
     const onDoneClicked =(todoId:number,isDone:boolean) =>{
         todoService.updateTodo(todoId,{isDone:isDone}).then((()=>{
@@ -49,7 +54,7 @@ export const TodoContainer = ({todoService}:TodoContianerProps) =>{
     }
 
     const onEditClicked= (id:number)=>{
-        setAppState({editTodId:id,isDrawerOpen:true})
+        dispatch(openDrawerFunc(id));
     }
 
     const buttonSelectOptions = [

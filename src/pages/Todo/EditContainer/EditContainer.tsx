@@ -6,6 +6,9 @@ import { TextAreaField } from '../../../components/TextAreaField/TextAreadField'
 import { TextField } from '../../../components/TextField/TextField';
 import { TodoService } from '../../../services/Todo.service';
 import { useAppState } from '../../../customHooks/useAppSate';
+import { useDispatch, useSelector } from 'react-redux';
+import { closeDrawerFunc, openDrawerFunc } from '../../../redux/todo/TodoReducer';
+import { RootState } from '../../../redux';
 
 type EditContainerProps ={
     todoService:TodoService
@@ -26,26 +29,26 @@ export const EditContainer = (
         isDone:false,
         task:""
     });
+    const todoDrawer = useSelector((state: RootState) => state.todo);
+    // const {appState,setAppState} =  useAppState();
 
-    const {appState,setAppState} =  useAppState();
-
+    const dispatch = useDispatch();
     useEffect(()=>{
-        if(appState.editTodId!==-1){
-            todoService.getTodo(appState.editTodId).then((todo)=>{
+        if(todoDrawer.todoId!==-1){
+            todoService.getTodo(todoDrawer.todoId).then((todo)=>{
                 setTodo(todo)
             });
         }
-    },[appState.editTodId]);
+    },[todoDrawer.todoId]);
 
         const onClickedSaveButton =()=>{
-            todoService.updateTodo(appState.editTodId,todo).then(()=>{
-                setAppState({editTodId:-1,isDrawerOpen:false});
+            todoService.updateTodo(todoDrawer.todoId,todo).then(()=>{
+                dispatch(closeDrawerFunc());
             });
-            
         }
 
         const onCancelButton =()=>{
-            setAppState({editTodId:-1,isDrawerOpen:false});
+            dispatch(closeDrawerFunc());
         }
 
        const onFormChanged = (updatedState:Partial<TodoState>)=>{

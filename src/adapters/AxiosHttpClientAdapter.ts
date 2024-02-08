@@ -44,17 +44,18 @@ export class AxiosHttpClientAdapter{
                             .map((key)=> `${key}=${Object.getOwnPropertyDescriptor(params.query,key)?.value}`
                             )
                             .join("&");
-
-        return (await this.http.get(this.baseUrl+url + "?"+query)).data;
+        var result = (await this.http.get(this.baseUrl+url + "?"+query));
+        return result.data as T;
     }
 
     async post<T>(url:string,data:T){
-        return (await this.http.post(this.baseUrl+url,{
+        var result = (await this.http.post(this.baseUrl+url,{
             headers:{
                 "Content-Type":"application/json",
             },
             body:JSON.stringify(data)
-        })).data;
+        }));
+        return result.data;
     }
 
     async patch<T>(url:string,data:T){
