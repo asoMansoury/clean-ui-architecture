@@ -5,7 +5,6 @@ import { AddTodoItem } from "./AddTodoItem/AddTodoItem";
 import { Todo } from "../../models/containers/Todo";
 import { TodoService } from "../../services/Todo.service";
 import { ButtonSelect } from "../../components/ButtonSelect/ButtonSelect";
-import { useAppState } from "../../customHooks/useAppSate";
 import { useDispatch, useSelector } from "react-redux";
 import { closeDrawerFunc, openDrawerFunc } from "../../redux/todo/TodoReducer";
 import { RootState } from "../../redux";

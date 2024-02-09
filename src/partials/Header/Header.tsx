@@ -7,8 +7,8 @@ export const Header = ()=>
     <div className={classes.HeaderTitle}>Todo App</div>
     <nav className="m-auto">
       <HeaderLink url="/">Home</HeaderLink>
-      <HeaderLink url="/Stats ">Stats</HeaderLink>
-      <HeaderLink url="/About">About</HeaderLink>
+      <HeaderLink url="/stats ">Stats</HeaderLink>
+      <HeaderLink url="/about">About</HeaderLink>
     </nav>
   </header>
 

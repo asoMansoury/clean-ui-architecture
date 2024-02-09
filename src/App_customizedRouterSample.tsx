@@ -36,7 +36,7 @@ function App() {
   return <>
   <Header></Header>
   <div className='mr-auto ml-auto' style={{width:"500px"}}>
-    <Provider store={store}>
+    {/* <Provider store={store}>
       {
         location ==="/" && (
           <>
@@ -48,7 +48,7 @@ function App() {
       {
         location==="/Stats" && <StatsContainer></StatsContainer>
       }
-      </Provider>
+      </Provider> */}
   </div>
   </>
 }
