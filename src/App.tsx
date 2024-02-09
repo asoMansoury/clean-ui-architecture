@@ -2,34 +2,38 @@
 import './App.css';
 import "./styles/general.scss";
 import Header from './partials/Header/Header';
-import EditContainer from './pages/Todo/EditContainer';
-import  TodoContainer  from './pages/Todo';
 import { Provider } from 'react-redux';
 import { store } from './redux';
-import  StatsContainer  from './pages/Stats';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import  AboutContainer  from './pages/About';
+import { Suspense, lazy } from 'react';
+import { withSuspense } from './hoc/withSuspense';
+import { PageLayout } from './components/PageLayout.tsx/PageLayout';
 
 
+const AsyncTodoContainer = withSuspense(()=>import("./pages/Todo"));
+const AsyncEditTodoContainer = withSuspense(()=>import("./pages/Todo/EditContainer"));
+const AsyncStatsContainer = withSuspense(()=>import("./pages/Stats"));
+const AsyncAboutContainer = withSuspense(()=>import("./pages/About"));
 
 function App() {
-
   return <>
-  <Header></Header>
-  <div className='mr-auto ml-auto' style={{width:"500px"}}>
-    <Provider store={store}>
-      <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<>
-          <TodoContainer></TodoContainer>
-          <EditContainer></EditContainer>
-        </>}></Route>
-        <Route path='/stats' element={<StatsContainer></StatsContainer>}></Route>
-        <Route path='/about' element={<AboutContainer></AboutContainer>}></Route>
-      </Routes>
-      </BrowserRouter>
-    </Provider>
-  </div>
+        <BrowserRouter>
+          <Header></Header>
+          <PageLayout>
+            <Provider store={store}>
+                <Routes>
+                  <Route path="/" element={
+                    <>
+                      {AsyncTodoContainer}
+                      {AsyncEditTodoContainer}
+                    </>
+                  }></Route>
+                  <Route path='/stats' element={AsyncStatsContainer}></Route>
+                  <Route path='/about' element={AsyncAboutContainer}></Route>
+                </Routes>
+              </Provider>
+          </PageLayout>
+        </BrowserRouter>
   </>
 }
 
