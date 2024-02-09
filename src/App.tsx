@@ -7,6 +7,8 @@ import EditContainer from './pages/Todo/EditContainer';
 import  TodoContainer  from './pages/Todo';
 import { Provider } from 'react-redux';
 import { store } from './redux';
+import { StatsContainer } from './pages/Stats/StatsContainer';
+import { useEffect, useState } from 'react';
 
 
 
@@ -16,8 +18,10 @@ function App() {
   <Header></Header>
   <div className='mr-auto ml-auto' style={{width:"500px"}}>
     <Provider store={store}>
-        <TodoContainer></TodoContainer>
-        <EditContainer></EditContainer>
+          <TodoContainer></TodoContainer>
+          <EditContainer></EditContainer>
+          <StatsContainer></StatsContainer>
+
       </Provider>
   </div>
   </>
