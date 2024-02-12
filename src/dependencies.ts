@@ -1,4 +1,7 @@
-import { AxiosHttpClientAdapter } from './adapters/AxiosHttpClientAdapter';
+//This is our container for registering our services here.
+//As a sample We registered two services into our container.
+//
+
 import { HttpClientAdapter } from './adapters/HttpClientAdapter';
 import { TodoService } from './services/Todo.service';
 
@@ -16,7 +19,6 @@ class DependenyContianer {
     }
 }
 const httpAdapter = new HttpClientAdapter({baseUrl:process.env.REACT_APP_API_URL!.toString()});
-// const httpAdapter = new AxiosHttpClientAdapter({baseUrl:process.env.REACT_APP_API_URL!.toString()});
 const todoService = new TodoService(httpAdapter);
 
 const dependencies = {

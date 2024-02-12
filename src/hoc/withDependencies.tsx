@@ -1,3 +1,7 @@
+//This Hoc is the most important hoc in our project.
+//This Hoc take two params, the first one is your component,
+//The second paramters is for injecteing your services which you have already injected in dependencies.tsx
+
 import { ComponentProps, ElementType } from "react";
 import { container } from "../dependencies";
 
@@ -7,13 +11,6 @@ export const WithDependency = (
         [key:string]:symbol
     }) =>{
     const resolvedDependencies = {};
-        // console.log({dependencies});
-        // Object.keys(dependencies).forEach(propName=>{
-        //     console.log(propName);
-        //     console.log(dependencies[propName]);
-        //     console.log(Object.getOwnPropertyDescriptor(dependencies,propName)?.value);
-        //     console.log(container.get(dependencies[propName]))
-        // });
 
         Object.keys(dependencies).forEach(propName =>{
             const dependencyKey = Object.getOwnPropertyDescriptor(dependencies,propName)?.value;

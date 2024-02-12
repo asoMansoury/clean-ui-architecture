@@ -2,12 +2,6 @@
 import './App.css';
 import "./styles/general.scss";
 import Header from './partials/Header/Header';
-import { AppStateProvider, useAppState } from './customHooks/useAppSate';
-import EditContainer from './pages/Todo/EditContainer';
-import  TodoContainer  from './pages/Todo';
-import { Provider } from 'react-redux';
-import { store } from './redux';
-import { StatsContainer } from './pages/Stats/StatsContainer';
 import { useEffect, useState } from 'react';
 
 

@@ -5,7 +5,6 @@ import { CheckBoxField } from '../../../components/CheckBoxField/CheckBoxFile';
 import { TextAreaField } from '../../../components/TextAreaField/TextAreadField';
 import { TextField } from '../../../components/TextField/TextField';
 import { TodoService } from '../../../services/Todo.service';
-import { useAppState } from '../../../customHooks/useAppSate';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeDrawerFunc, openDrawerFunc } from '../../../redux/todo/TodoReducer';
 import { RootState } from '../../../redux';

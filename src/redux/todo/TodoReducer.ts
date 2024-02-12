@@ -1,3 +1,6 @@
+//This file contians a reducer sample which is being for closing and openning drawer container
+//This reducer is for sample and you can remove this file from your project.
+
 import {createSlice,PayloadAction} from '@reduxjs/toolkit';
 import { IDrawerType } from '../../models/redux/IDrawerType';
 

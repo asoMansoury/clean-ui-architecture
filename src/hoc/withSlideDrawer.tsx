@@ -1,6 +1,5 @@
 import { ComponentProps, ElementType, useContext } from "react"
 import classes from './withSlideDrawer.module.scss';
-import { useAppState } from "../customHooks/useAppSate";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux";
 

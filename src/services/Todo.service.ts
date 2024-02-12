@@ -1,3 +1,5 @@
+//This service is implemented as a sample to be injected into your project.
+//you can either user or remove this sample for your future requirements.
 import { AxiosHttpClientAdapter } from "../adapters/AxiosHttpClientAdapter";
 import { HttpClientAdapter } from "../adapters/HttpClientAdapter";
 import { Todo } from "../models/containers/Todo";
