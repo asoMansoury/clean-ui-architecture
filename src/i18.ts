@@ -1,7 +1,9 @@
 import i18next from "i18next";
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from "react-i18next";
+import Backend from 'i18next-http-backend';
 i18next
+    .use(Backend)
     .use(LanguageDetector)
     .use(initReactI18next)
     .init({
@@ -9,24 +11,4 @@ i18next
         lng:'en',
         fallbackLng:"en",
         returnObjects:true,
-        resources:{
-            en:{
-                translation:{
-                    Header:{
-                        Home:"Home",
-                        Stats:"Stats",
-                        About:"About"
-                    }
-                }
-            },
-            fr:{
-                translation:{
-                    Header:{
-                        Home:"Maison",
-                        Stats:"Statistiques",
-                        About:"À propos"
-                    }
-                }
-            }
-        }
     })
