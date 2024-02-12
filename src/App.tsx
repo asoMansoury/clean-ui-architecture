@@ -9,7 +9,8 @@ import { store } from './redux';
 import  StatsContainer  from './pages/Stats';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import  AboutContainer  from './pages/About';
-
+import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 
 function App() {
