@@ -1,0 +1,12 @@
+@use "./styles/tokens" as *;
+
+.main{
+  width:1440px
+}
+
+
+@media (max-width: $MOBILE_SCREEN) {
+  .main{
+    width:$MOBILE_SCREEN
+  }
+}

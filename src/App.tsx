@@ -9,10 +9,8 @@ import { store } from './redux';
 import  StatsContainer  from './pages/Stats';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import  AboutContainer  from './pages/About';
-import { useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
 import { Menu } from './partials/MenuBar/Menu';
-
+import classes from './App.module.scss';
 
 function App() {
 
@@ -25,7 +23,7 @@ function App() {
         <Header></Header>
         <Menu></Menu>
 
-        <div className='mr-auto ml-auto' style={{width:"1440px"}} >
+        <div className={classes.main + ' mr-auto ml-auto'} >
           <Routes>
             <Route path="/" element={<>
               <TodoContainer></TodoContainer>

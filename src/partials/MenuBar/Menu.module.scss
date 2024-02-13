@@ -11,3 +11,9 @@
     margin-bottom: 5px;
 }
 
+@media (max-width: 600px) {
+    .Menu {
+      display: none ; 
+    }
+  }
+

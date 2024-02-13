@@ -32,3 +32,21 @@
     top: 24.14%;
     bottom: 20.69%;
 }
+
+.HeaderRight{
+    display:flex;
+    min-width:350px;
+    justify-content:space-between;
+    margin-right:50px
+}
+
+@media (max-width: $MOBILE_SCREEN) {
+    .btnContainer {
+      display: none ; 
+    }
+    .HeaderRight{
+        display:flex;
+        justify-content:right;
+    }
+  }
+
