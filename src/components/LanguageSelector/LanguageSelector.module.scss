@@ -27,3 +27,9 @@
 .button.selected{
     background-color: #33393c;
 }
+
+@media (max-width: 600px) {
+    .btnContainer {
+      display: none ; 
+    }
+  }

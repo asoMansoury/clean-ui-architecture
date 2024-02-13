@@ -1,7 +1,12 @@
 {
     "Header":{
-        "Home":"Maison",
-        "Stats":"Statistiques",
-        "About":"À propos"
+        "File":"Déposer",
+        "System":"System",
+        "Concession":"Concession",
+        "Theatre":"Théâtre",
+        "Film":"Film",
+        "Reports":"Rapports",
+        "DataReceipt":"Réception des données",
+        "Help":"Aide"
     }
 }

@@ -28,7 +28,7 @@ const languages = [
     return (
         <div className={classes.btnContainer}>
             {languages.map((lng)=>{
-                return <button className={lng.code === i18n.language?classes.selected:classes.button}  key ={lng.code} onClick={(e)=> changeLanguage(lng.code)}>{lng.lang}</button>
+                return <button className={lng.code === i18n.language?classes.selected+" "+ classes.button:null +" "+ classes.button}  key ={lng.code} onClick={(e)=> changeLanguage(lng.code)}>{lng.lang}</button>
             })}
         </div>
     )

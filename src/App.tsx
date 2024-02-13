@@ -11,23 +11,30 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import  AboutContainer  from './pages/About';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Menu } from './partials/MenuBar/Menu';
 
 
 function App() {
 
   return <>
-  <Header></Header>
-  <div className='mr-auto ml-auto' style={{width:"500px"}}>
+
+  <div >
+
     <Provider store={store}>
       <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<>
-          <TodoContainer></TodoContainer>
-          <EditContainer></EditContainer>
-        </>}></Route>
-        <Route path='/stats' element={<StatsContainer></StatsContainer>}></Route>
-        <Route path='/about' element={<AboutContainer></AboutContainer>}></Route>
-      </Routes>
+        <Header></Header>
+        <Menu></Menu>
+
+        <div className='mr-auto ml-auto' style={{width:"1440px"}} >
+          <Routes>
+            <Route path="/" element={<>
+              <TodoContainer></TodoContainer>
+              <EditContainer></EditContainer>
+            </>}></Route>
+            <Route path='/system' element={<StatsContainer></StatsContainer>}></Route>
+            <Route path='/about' element={<AboutContainer></AboutContainer>}></Route>
+          </Routes>
+        </div>
       </BrowserRouter>
     </Provider>
   </div>

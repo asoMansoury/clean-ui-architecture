@@ -12,3 +12,22 @@
     font-size: $FONT_SIZE-3;
 }
 
+.StoreNav{
+    display: flex;
+    min-height: 80px;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    background: #0A0B0D;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.Search{
+    position: absolute;
+    left: 82.22%;
+    right: 15.56%;
+    top: 24.14%;
+    bottom: 20.69%;
+}
